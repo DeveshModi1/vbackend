@@ -11,7 +11,6 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-const cors = require("cors");
 
 // Allow requests from your frontend
 app.use(
