@@ -11,21 +11,20 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+const cors = require("cors");
+
+// Allow requests from your frontend
 app.use(
   cors({
-    origin: "https://vastrafusion.com/", // Allow only frontend domain
-    credentials: true, // Allow credentials (cookies, auth headers, etc.)
+    origin: "https://vastrafusion.com", // ✅ Remove trailing slash
+    credentials: true, // ✅ Allow cookies if needed
+    methods: "GET,POST,PUT,DELETE", // ✅ Specify allowed methods
+    allowedHeaders: "Content-Type,Authorization", // ✅ Allowed headers
   })
 );
 
-// ✅ Manually add headers for safety
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://vastrafusion.com/");
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  next();
-});
+
+
 require("dotenv").config();
 
 
